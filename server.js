@@ -13,7 +13,7 @@ const { DB, PORT } = require("./config");
 // Initialize the application
 const app = exp();
 const cors = require("cors");
-app.use(exp.static(path.join(__dirname, 'public')))
+// app.use(exp.static(path.join(__dirname, 'public')))
 // Middlewares
 app.use(cors());
 app.use(passport.initialize());
