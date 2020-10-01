@@ -37,12 +37,7 @@ app.use(require("./routes/menus"));
 app.use(require("./routes/questions"));
 app.use(require("./routes/courses"));
 app.use(require("./routes/teachers"));
-if(process.env.NODE_ENV==='production'){
-  app.use(express.static('client/build'));
-  app.get('*',(req,res)=>{
-    res.sendFile(path.join('client','build','index.html'));
-  })
-}
+
 
 const startApp = async () => {
   try {
@@ -58,7 +53,12 @@ const startApp = async () => {
       badge: true
     });
 
-
+    if(process.env.NODE_ENV==='production'){
+      app.use(exp.static('client/build'));
+      app.get('*',(req,res)=>{
+        res.sendFile(path.join('client','build','index.html'));
+      })
+    }
     // Start Listenting for the server on PORT
     app.listen(PORT, () =>
       success({ message: `Server started on PORT ${PORT}`, badge: true })
